@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Wishlist } from '../models/wishlist.model';
 
 @Injectable({
   providedIn: 'root'
@@ -14,11 +15,11 @@ export class AddToWishlistServiceService {
   
    
   public viewAllItems(){
-    return this.http.get(this.wishlistURL+"//viewAllItems");
+    return this.http.get(this.wishlistURL+"/viewAllProducts");
   }
 
-  public deleteProduct(productId){
-    return this.http.delete(this.wishlistURL+"/deleteProduct?userId=user1&productId="+productId);
-    //return this.http.post(this.cartURL+"/removeFromCartById",{"userId":"user1","productId":productId},{responseType:'text' as 'json'});
+  public deleteProduct(wishlist:Wishlist){
+    // return this.http.delete(this.wishlistURL+"/deleteProduct?userId=user1&productId="+productId);
+    return this.http.post(this.wishlistURL+"/deleteProduct",wishlist,{responseType:'text' as 'json'});
   }
 }
